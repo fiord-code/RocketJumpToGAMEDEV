@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/characters/Basic/BasicCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/characters/Basic/BasicEnemy.gd" type="Script" id=2]
+[ext_resource path="res://scenes/collectibles/Gem.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="BasicEnemy" groups=["enemies"] instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource( 2 )
+stop_radius = 0.0
+loot_gems_amount = 0
+loot_gems_drop_probability = 0.0
+loot_gem = ExtResource( 3 )
+spawn_position = Vector2( 0, 0 )
+
+[node name="HitBox" parent="." index="4"]
+collision_layer = 32
+
+[node name="StopArea" type="Area2D" parent="." index="5"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StopArea" index="0"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="Rays" type="Node2D" parent="." index="6"]
+
+[node name="RayCast2D" type="RayCast2D" parent="Rays" index="0"]
+position = Vector2( 0, 48 )
+enabled = true
+cast_to = Vector2( 250, 0 )
+collision_mask = 2
+
+[node name="RayCast2D2" type="RayCast2D" parent="Rays" index="1"]
+position = Vector2( 0, -48 )
+enabled = true
+cast_to = Vector2( 250, 0 )
+collision_mask = 2
+
+[node name="RayCast2D3" type="RayCast2D" parent="Rays" index="2"]
+enabled = true
+cast_to = Vector2( 250, 0 )
+collision_mask = 2
+
+[connection signal="area_entered" from="StopArea" to="." method="_on_StopArea_area_entered"]
+[connection signal="area_exited" from="StopArea" to="." method="_on_StopArea_area_exited"]

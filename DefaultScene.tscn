@@ -1,0 +1,173 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://scenes/UI/SkillSelectionWindow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/characters/PlayerShips/PlayerShipA.tscn" type="PackedScene" id=2]
+[ext_resource path="res://DefaultScene.gd" type="Script" id=3]
+[ext_resource path="res://scenes/environment/StarField.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/UI/UI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://arts/particles/circle_part_001.png" type="Texture" id=6]
+[ext_resource path="res://scenes/UI/Final.tscn" type="PackedScene" id=7]
+[ext_resource path="res://res/audio/brute_force_loop.mp3" type="AudioStream" id=8]
+[ext_resource path="res://arts/planets/planet00.png" type="Texture" id=9]
+[ext_resource path="res://arts/planets/planet07.png" type="Texture" id=10]
+[ext_resource path="res://res/audio/explosion_02.ogg" type="AudioStream" id=11]
+[ext_resource path="res://res/audio/lowRandom.ogg" type="AudioStream" id=12]
+[ext_resource path="res://res/audio/laser3.ogg" type="AudioStream" id=13]
+[ext_resource path="res://res/audio/laser1.ogg" type="AudioStream" id=14]
+[ext_resource path="res://res/audio/laser2.ogg" type="AudioStream" id=15]
+[ext_resource path="res://res/audio/laser4.ogg" type="AudioStream" id=16]
+[ext_resource path="res://res/audio/laser5.ogg" type="AudioStream" id=17]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 2500.0
+
+[node name="DefaultScene" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+
+[node name="StarField" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource( 4 )]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.25, 0.25 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2( -602, -524 )
+rotation = -1.37223
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 9 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 403, 317 )
+rotation = -0.197159
+texture = ExtResource( 10 )
+
+[node name="PlayerShipA" parent="." instance=ExtResource( 2 )]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="UI" parent="." instance=ExtResource( 5 )]
+
+[node name="SkillSelectionWindow" parent="UI" instance=ExtResource( 1 )]
+visible = false
+
+[node name="Final" parent="UI" instance=ExtResource( 7 )]
+visible = false
+
+[node name="AreaBorder" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 0
+
+[node name="CirclePart001" type="Sprite" parent="AreaBorder"]
+position = Vector2( -0.00012207, -0.00012207 )
+scale = Vector2( 16.96, 16.96 )
+texture = ExtResource( 6 )
+offset = Vector2( -128, -128 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaBorder"]
+position = Vector2( -2173, -2166 )
+scale = Vector2( 16.96, 16.96 )
+polygon = PoolVector2Array( 128, -71, 128.125, -25.5307, 124.587, -25.4717, 100.354, -23.9976, 96.5212, -23.2311, 85.0236, -20.5778, 79.5991, -18.691, 71.4623, -16.4505, 66.3325, -13.8561, 58.4906, -9.66981, 52.8302, -6.83962, 46.934, -3.41981, 38.6203, 2.06368, 30.4835, 8.01887, 23.5849, 14.3278, 13.2665, 25.8255, 9.25707, 29.9528, 7.13443, 32.7241, 5.54245, 34.7288, 3.53773, 37.0873, 1.88679, 39.7406, -2.41747, 45.9316, -3.95049, 48.6439, -7.01651, 53.4198, -10.7311, 60.8491, -13.5613, 66.8043, -16.3915, 73.5259, -19.2217, 82.3703, -20.6368, 87.0283, -22.7005, 95.9906, -23.7618, 102.771, -24.8821, 110.436, -24.941, 121.934, -24.941, 128.007, -71, 128, -72.1, 112, -70.9, 112, -69.9, 96, -69, 96, -69, 90, -67.9, 90, -64.8, 73, -63.8, 73, -61.8, 63, -60.8, 63, -56.7, 50, -55.6, 50, -53, 44.8, -53, 41, -51.7, 41, -48.7, 33, -47.6, 33, -35.6, 12, -34.6, 12, -32.6, 8, -31.4, 8, -30, 6.60001, -30, 4, -28.4, 4, -26, 1.60001, -26, -1, -24.4, -1, -8.4, -19, -6.5, -19, -0.5, -26, 1.60001, -26, 12.6, -36, 14.5, -36, 21.6, -42, 23.6, -42, 26.6, -45, 28.7, -45, 43.7, -54, 46.7, -54, 50.7, -57, 53.6, -57, 55.6, -59, 58.8, -59, 73.8, -65, 77.7, -65, 90.8, -69, 96.7, -69, 103.9, -71, 112, -71, 112, -72.1 )
+
+[node name="CirclePart002" type="Sprite" parent="AreaBorder"]
+position = Vector2( -0.00012207, -0.00012207 )
+rotation = 1.5708
+scale = Vector2( 16.96, 16.96 )
+texture = ExtResource( 6 )
+offset = Vector2( -128, -128 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="AreaBorder"]
+position = Vector2( 2164, -2166 )
+rotation = 1.5708
+scale = Vector2( 16.96, 16.96 )
+polygon = PoolVector2Array( 128, -71, 128.125, -25.5307, 124.587, -25.4717, 100.354, -23.9976, 96.5212, -23.2311, 85.0236, -20.5778, 79.5991, -18.691, 71.4623, -16.4505, 66.3325, -13.8561, 58.4906, -9.66981, 52.8302, -6.83962, 46.934, -3.41981, 38.6203, 2.06368, 30.4835, 8.01887, 23.5849, 14.3278, 13.2665, 25.8255, 9.25707, 29.9528, 7.13443, 32.7241, 5.54245, 34.7288, 3.53773, 37.0873, 1.88679, 39.7406, -2.41747, 45.9316, -3.95049, 48.6439, -7.01651, 53.4198, -10.7311, 60.8491, -13.5613, 66.8043, -16.3915, 73.5259, -19.2217, 82.3703, -20.6368, 87.0283, -22.7005, 95.9906, -23.7618, 102.771, -24.8821, 110.436, -25.7075, 121.521, -25.5306, 127.712, -71, 128, -72.1, 112, -70.9, 112, -69.9, 96, -69, 96, -69, 90, -67.9, 90, -64.8, 73, -63.8, 73, -61.8, 63, -60.8, 63, -56.7, 50, -55.6, 50, -53, 44.8, -53, 41, -51.7, 41, -48.7, 33, -47.6, 33, -35.6, 12, -34.6, 12, -32.6, 8, -31.4, 8, -30, 6.60001, -30, 4, -28.4, 4, -26, 1.60001, -26, -1, -24.4, -1, -8.4, -19, -6.5, -19, -0.5, -26, 1.60001, -26, 12.6, -36, 14.5, -36, 21.6, -42, 23.6, -42, 26.6, -45, 28.7, -45, 43.7, -54, 46.7, -54, 50.7, -57, 53.6, -57, 55.6, -59, 58.8, -59, 73.8, -65, 77.7, -65, 90.8, -69, 96.7, -69, 103.9, -71, 112, -71, 112, -72.1 )
+
+[node name="CirclePart003" type="Sprite" parent="AreaBorder"]
+position = Vector2( -0.241158, 0.36903 )
+rotation = 3.14159
+scale = Vector2( 16.96, 16.96 )
+texture = ExtResource( 6 )
+offset = Vector2( -128.014, -127.978 )
+
+[node name="CirclePart004" type="Sprite" parent="AreaBorder"]
+position = Vector2( -0.241158, 0.36903 )
+rotation = 4.71239
+scale = Vector2( 16.96, 16.96 )
+texture = ExtResource( 6 )
+offset = Vector2( -128.014, -127.978 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="AreaBorder"]
+position = Vector2( 2164, 2168 )
+rotation = 3.14159
+scale = Vector2( 16.96, 16.96 )
+polygon = PoolVector2Array( 128, -71, 128.125, -25.5307, 124.587, -25.4717, 100.354, -23.9976, 96.5212, -23.2311, 85.0236, -20.5778, 79.5991, -18.691, 71.4623, -16.4505, 66.3325, -13.8561, 58.4906, -9.66981, 52.8302, -6.83962, 46.934, -3.41981, 38.6203, 2.06368, 30.4835, 8.01887, 23.5849, 14.3278, 13.2665, 25.8255, 9.25707, 29.9528, 7.13443, 32.7241, 5.54245, 34.7288, 3.53773, 37.0873, 1.88679, 39.7406, -2.41747, 45.9316, -3.95049, 48.6439, -7.01651, 53.4198, -10.7311, 60.8491, -13.5613, 66.8043, -16.3915, 73.5259, -19.2217, 82.3703, -20.6368, 87.0283, -22.7005, 95.9906, -23.7618, 102.771, -24.8821, 110.436, -25.7075, 121.521, -25.5306, 127.712, -71, 128, -72.1, 112, -70.9, 112, -69.9, 96, -69, 96, -69, 90, -67.9, 90, -64.8, 73, -63.8, 73, -61.8, 63, -60.8, 63, -56.7, 50, -55.6, 50, -53, 44.8, -53, 41, -51.7, 41, -48.7, 33, -47.6, 33, -35.6, 12, -34.6, 12, -32.6, 8, -31.4, 8, -30, 6.60001, -30, 4, -28.4, 4, -26, 1.60001, -26, -1, -24.4, -1, -8.4, -19, -6.5, -19, -0.5, -26, 1.60001, -26, 12.6, -36, 14.5, -36, 21.6, -42, 23.6, -42, 26.6, -45, 28.7, -45, 43.7, -54, 46.7, -54, 50.7, -57, 53.6, -57, 55.6, -59, 58.8, -59, 73.8, -65, 77.7, -65, 90.8, -69, 96.7, -69, 103.9, -71, 112, -71, 112, -72.1 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="AreaBorder"]
+position = Vector2( -2165, 2168 )
+rotation = 4.71239
+scale = Vector2( 16.96, 16.96 )
+polygon = PoolVector2Array( 128, -71, 128.125, -25.5307, 124.587, -25.4717, 100.354, -23.9976, 96.5212, -23.2311, 85.0236, -20.5778, 79.5991, -18.691, 71.4623, -16.4505, 66.3325, -13.8561, 58.4906, -9.66981, 52.8302, -6.83962, 46.934, -3.41981, 38.6203, 2.06368, 30.4835, 8.01887, 23.5849, 14.3278, 13.2665, 25.8255, 9.25707, 29.9528, 7.13443, 32.7241, 5.54245, 34.7288, 3.53773, 37.0873, 1.88679, 39.7406, -2.41747, 45.9316, -3.95049, 48.6439, -7.01651, 53.4198, -10.7311, 60.8491, -13.5613, 66.8043, -16.3915, 73.5259, -19.2217, 82.3703, -20.6368, 87.0283, -22.7005, 95.9906, -23.7618, 102.771, -24.8821, 110.436, -25.7075, 121.521, -25.5306, 127.712, -71, 128, -72.1, 112, -70.9, 112, -69.9, 96, -69, 96, -69, 90, -67.9, 90, -64.8, 73, -63.8, 73, -61.8, 63, -60.8, 63, -56.7, 50, -55.6, 50, -53, 44.8, -53, 41, -51.7, 41, -48.7, 33, -47.6, 33, -35.6, 12, -34.6, 12, -32.6, 8, -31.4, 8, -30, 6.60001, -30, 4, -28.4, 4, -26, 1.60001, -26, -1, -24.4, -1, -8.4, -19, -6.5, -19, -0.5, -26, 1.60001, -26, 12.6, -36, 14.5, -36, 21.6, -42, 23.6, -42, 26.6, -45, 28.7, -45, 43.7, -54, 46.7, -54, 50.7, -57, 53.6, -57, 55.6, -59, 58.8, -59, 73.8, -65, 77.7, -65, 90.8, -69, 96.7, -69, 103.9, -71, 112, -71, 112, -72.1 )
+
+[node name="RoundTimer" type="Timer" parent="."]
+
+[node name="Spawner" type="Node2D" parent="."]
+
+[node name="SpawnArea" type="Area2D" parent="Spawner"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/SpawnArea"]
+shape = SubResource( 1 )
+
+[node name="SpawnTimer" type="Timer" parent="Spawner"]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+mix_target = 1
+bus = "Music"
+
+[node name="AudioStreamLaser3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -10.0
+bus = "SFX"
+
+[node name="AudioStreamLaser4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -10.0
+bus = "SFX"
+
+[node name="AudioStreamLaser5" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -10.0
+bus = "SFX"
+
+[node name="AudioStreamLaser1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -10.0
+bus = "SFX"
+
+[node name="AudioStreamLaser2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -10.0
+bus = "SFX"
+
+[node name="AudioStreamEnemyBlast" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+bus = "SFX"
+
+[node name="AudioStreamCollectGem" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+bus = "SFX"
+
+[connection signal="timeout" from="RoundTimer" to="." method="_on_RoundTimer_timeout"]
+[connection signal="timeout" from="Spawner/SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

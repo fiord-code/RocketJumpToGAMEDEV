@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/weapons/BasicTurret.tscn" type="PackedScene" id=1]
+[ext_resource path="res://arts/PNG/Parts/turretBase_small.png" type="Texture" id=2]
+[ext_resource path="res://arts/PNG/Parts/gun03.png" type="Texture" id=3]
+[ext_resource path="res://scenes/weapons/PlayerTurretGunA.tscn" type="PackedScene" id=4]
+[ext_resource path="res://res/audio/laser2.ogg" type="AudioStream" id=5]
+
+[node name="PlayerTurretA" instance=ExtResource( 1 )]
+detection_radius = 1000
+
+[node name="GunSprite" type="Sprite" parent="." index="0"]
+position = Vector2( 17, 1.449 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )
+
+[node name="DetectionArea" parent="." index="2"]
+collision_mask = 32
+
+[node name="PlayerTurretGunA" parent="." index="3" instance=ExtResource( 4 )]
+damage = 10.0
+bullet_speed = 800.0
+shoot_sound = ExtResource( 5 )

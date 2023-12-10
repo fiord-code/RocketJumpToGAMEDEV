@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://joystick/virtual_joystick.tscn" type="PackedScene" id=1]
+[ext_resource path="res://res/themes/MainMenu.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/UI/UI.gd" type="Script" id=3]
+[ext_resource path="res://arts/collectibles/spaceGem_001.png" type="Texture" id=4]
+[ext_resource path="res://fonts/fonts_resources/roboto_regular.tres" type="DynamicFont" id=5]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="Virtual joystick" parent="." instance=ExtResource( 1 )]
+anchor_top = 0.0
+anchor_right = 1.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = 400.0
+visibility_mode = 1
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_up"
+action_down = "move_down"
+
+[node name="HUD" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+
+[node name="TimerLabel" type="Label" parent="HUD/VBoxContainer"]
+margin_right = 1460.0
+margin_bottom = 71.0
+text = "0"
+align = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/VBoxContainer"]
+margin_top = 75.0
+margin_right = 1460.0
+margin_bottom = 113.0
+
+[node name="WaveLabel" type="Label" parent="HUD/VBoxContainer/HBoxContainer2"]
+margin_right = 131.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 5 )
+text = "Волна: N"
+
+[node name="EnemiesLabel" type="Label" parent="HUD/VBoxContainer/HBoxContainer2"]
+margin_left = 135.0
+margin_right = 1460.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+align = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/VBoxContainer"]
+margin_top = 117.0
+margin_right = 1460.0
+margin_bottom = 155.0
+
+[node name="TextureRect" type="TextureRect" parent="HUD/VBoxContainer/HBoxContainer"]
+margin_right = 38.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 38, 38 )
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="ScoreLabel" type="Label" parent="HUD/VBoxContainer/HBoxContainer"]
+margin_left = 42.0
+margin_right = 1460.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 5 )
+text = "0"
+valign = 1
+autowrap = true

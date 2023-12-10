@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/weapons/BasicGun.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/weapons/bullets/PlayerBulletA.tscn" type="PackedScene" id=2]
+
+[node name="PlayerGunA" instance=ExtResource( 1 )]
+cooldown = 0.5
+damage = 30.0
+bullet_speed = 900.0
+bullet_life_time = 2.0
+bullet = ExtResource( 2 )
+
+[node name="AttackArea" parent="." index="0"]
+collision_mask = 32
+
+[node name="CollisionShape2D" parent="AttackArea" index="0"]
+position = Vector2( 601, 0 )

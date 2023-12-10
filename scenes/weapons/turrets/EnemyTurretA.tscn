@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/weapons/BasicTurret.tscn" type="PackedScene" id=1]
+[ext_resource path="res://arts/PNG/Parts/turretBase_small.png" type="Texture" id=2]
+[ext_resource path="res://arts/PNG/Parts/gun09.png" type="Texture" id=3]
+[ext_resource path="res://scenes/weapons/EnemyGunA.tscn" type="PackedScene" id=4]
+
+[node name="EnemyTurretA" instance=ExtResource( 1 )]
+detection_radius = 800
+
+[node name="GunSprite" type="Sprite" parent="." index="0"]
+position = Vector2( 13, 1.51 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )
+
+[node name="DetectionArea" parent="." index="2"]
+collision_mask = 16
+
+[node name="EnemyGunA" parent="." index="3" instance=ExtResource( 4 )]
+cooldown = 0.8
+damage = 20.0
+bullet_speed = 750.0

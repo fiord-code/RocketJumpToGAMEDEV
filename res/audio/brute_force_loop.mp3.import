@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/brute_force_loop.mp3-70d403f4eeb57b39fef8fb65313dfe09.mp3str"
+
+[deps]
+
+source_file="res://res/audio/brute_force_loop.mp3"
+dest_files=[ "res://.import/brute_force_loop.mp3-70d403f4eeb57b39fef8fb65313dfe09.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

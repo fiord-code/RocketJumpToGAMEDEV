@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/fonts_resources/roboto_regular.tres" type="DynamicFont" id=1]
+[ext_resource path="res://res/themes/MainMenu.tres" type="Theme" id=2]
+[ext_resource path="res://arts/collectibles/spaceGem_001.png" type="Texture" id=3]
+[ext_resource path="res://scenes/UI/Elements/LevelUpButton.gd" type="Script" id=4]
+[ext_resource path="res://res/audio/powerUp4.ogg" type="AudioStream" id=5]
+
+[node name="LevelUpButton" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 0.225
+margin_left = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource( 2 )
+script = ExtResource( 4 )
+state_name = "health_level"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1556.0
+margin_bottom = 194.0
+alignment = 1
+
+[node name="IconButton" type="Button" parent="VBoxContainer"]
+margin_right = 1556.0
+margin_bottom = 58.0
+mouse_filter = 1
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "NoStateName"
+flat = true
+align = 2
+expand_icon = true
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 62.0
+margin_right = 1556.0
+margin_bottom = 100.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Уровень NoLevel"
+align = 1
+autowrap = true
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_top = 104.0
+margin_right = 1556.0
+margin_bottom = 194.0
+rect_min_size = Vector2( 0, 90 )
+mouse_filter = 1
+size_flags_vertical = 3
+custom_colors/font_color_disabled = Color( 0.694118, 0.0862745, 0.0862745, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "no cost"
+icon = ExtResource( 3 )
+expand_icon = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]

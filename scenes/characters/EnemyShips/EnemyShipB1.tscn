@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/characters/Basic/BasicEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://arts/PNG/Enemies/enemyBlue3.png" type="Texture" id=2]
+[ext_resource path="res://scenes/weapons/EnemyGunA.tscn" type="PackedScene" id=3]
+[ext_resource path="res://arts/Sprites X2/Effects/spaceEffects_003.png" type="Texture" id=4]
+[ext_resource path="res://scenes/animation/Thruster.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 39.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 39.0128
+
+[node name="EnemyShipB1" instance=ExtResource( 1 )]
+ship_name = "EnemyShipB1"
+
+[node name="HealthBar" parent="." index="0"]
+margin_left = -58.0
+margin_top = 60.0
+margin_right = 58.0
+margin_bottom = 78.0
+
+[node name="Thruster" parent="Pivot" index="0" instance=ExtResource( 5 )]
+position = Vector2( -41, 0 )
+texture = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Pivot" index="1"]
+rotation = -1.5708
+texture = ExtResource( 2 )
+
+[node name="EnemyGunA" parent="Pivot" index="2" instance=ExtResource( 3 )]
+position = Vector2( 33, 0 )
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource( 2 )

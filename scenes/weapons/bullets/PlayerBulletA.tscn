@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/weapons/bullets/BasicBullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://arts/PNG/Lasers/laserRed14.png" type="Texture" id=2]
+[ext_resource path="res://arts/PNG/Lasers/laserRed10.png" type="Texture" id=3]
+[ext_resource path="res://arts/PNG/Lasers/laserRed08.png" type="Texture" id=4]
+[ext_resource path="res://arts/PNG/Lasers/laserRed09.png" type="Texture" id=5]
+[ext_resource path="res://arts/PNG/Lasers/laserRed11.png" type="Texture" id=6]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.99994
+height = 44.0001
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "burst",
+"speed": 24.0
+} ]
+
+[node name="PlayerBulletA" instance=ExtResource( 1 )]
+collision_layer = 4
+collision_mask = 32
+
+[node name="Sprite" type="Sprite" parent="Pivot" index="0"]
+rotation = 1.5708
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" parent="." index="3"]
+visible = false
+frames = SubResource( 2 )
+animation = "burst"
